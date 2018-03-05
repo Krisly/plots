@@ -20,7 +20,7 @@ plt.rc('ytick',  labelsize=font_size)  # fontsize of the tick labels
 plt.rc('legend', fontsize=font_size)   # legend fontsize
 plt.rc('figure', titlesize=font_size)  # # size of the figure title
 
-imsize = np.array([319, 217])
+imsize = np.array([319, 237])
 center = [108.5, 108.5]
 max_radius = 108
 radii = np.linspace(16, max_radius, 5)
@@ -61,16 +61,28 @@ for angle in angles:
 wedges = [
           (max_radius/2, 30,150, '#00ff08'),
           (max_radius/3, 150, 270, '#ff6100'),
-          (max_radius/1.5, 270, 390, '#000cff'),
-          #(96, 45, 58, '#FD7C1A'),
-          #(73, 291, 308, '#CCFF28'),
-          #(47, 146, 155, '#28FFCC'),
+          (max_radius/1.8, 270, 390, '#000cff'),
+          (max_radius/1.6, 30,150, '#00ff08'),
+          (max_radius/2.5, 150, 270, '#ff6100'),
+          (max_radius/1.4, 270, 390, '#000cff'),
           #(25, 340, 360, '#004AFF')
            ]
-
+def transp(i):
+    if i < 3:
+        return 0.8
+    else:
+        return 0.6
+i=0
 for (radius, theta1, theta2, color) in wedges:
-    ax.add_patch(patches.Wedge(center, radius, theta1, theta2,
-                               fc=color, ec='black', alpha=0.8, zorder=3))
+    ax.add_patch(patches.Wedge(center,
+                               radius,
+                               theta1,
+                               theta2,
+                               fc=color,
+                               ec='black',
+                               alpha=transp(i),
+                               zorder=3))
+    i+=1
 
 for patch in ax.patches:
     patch.set_clip_path(clip_path)
@@ -82,12 +94,12 @@ ax.text(80+max_radius * np.cos(np.pi + np.pi/4),
 ax.text(108.5+max_radius * np.cos(6*np.pi/4),
         120+max_radius*np.sin(-6*np.pi/4), u'TNV')
 
-ax.text(108.5 + 0.7*max_radius * np.cos(np.pi/4),
-        108.5 + 0.7*max_radius * np.sin(-np.pi/4), u'5')
-ax.text(108.5 + 0.4*max_radius * np.cos(np.pi + np.pi/4),
-        108.5 + 0.4*max_radius * np.sin(np.pi + np.pi/4), u'4')
-ax.text(108.5 + 0.6*max_radius * np.cos(6*np.pi/4),
-        108.5 + 0.6*max_radius * np.sin(-6*np.pi/4), u'3')
+ax.text(108.5 + 0.76*max_radius * np.cos(np.pi/4),
+        108.5 + 0.76*max_radius * np.sin(-np.pi/4), u'5')
+ax.text(108.5 + 0.5*max_radius * np.cos(np.pi + np.pi/4),
+        108.5 + 0.5*max_radius * np.sin(np.pi + np.pi/4), u'4')
+ax.text(108.5 + 0.75*max_radius * np.cos(6*np.pi/4),
+        108.5 + 0.75*max_radius * np.sin(-6*np.pi/4), u'3')
 
 ax.text(108.5 + 0.12*max_radius * np.cos(np.pi/4),
         108.5 + 0.12*max_radius * np.sin(-np.pi/4), u'1')
@@ -104,7 +116,7 @@ ax.text(108.5 + 0.95*max_radius * np.cos(6*np.pi/4),
         108.5 + 0.95*max_radius * np.sin(-6*np.pi/4), u'1')
 
 ax.text(250, 108.5, u'Critical',color='r')
-ax.text(108.5-45, -10, u'Risk Diagram',size=20)
+#ax.text(108.5-45, -10, u'Risk Diagram',size=20)
 ax.set_xlim(0, imsize[0])
 ax.set_ylim(imsize[1], 0)
 
