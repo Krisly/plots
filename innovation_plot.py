@@ -9,6 +9,17 @@ from matplotlib import image, patches, colors
 from matplotlib.colors import colorConverter
 import numpy as np
 
+# Sets Plotting parameters
+font_size = 15
+plt.rcParams['figure.figsize'] = (10,20)
+plt.rc('font',   size=font_size)       # controls default text sizes
+plt.rc('axes',  titlesize=font_size)   # fontsize of the axes title
+plt.rc('axes',   labelsize=font_size)  # fontsize of the x any y labels
+plt.rc('xtick',  labelsize=font_size)  # fontsize of the tick labels
+plt.rc('ytick',  labelsize=font_size)  # fontsize of the tick labels
+plt.rc('legend', fontsize=font_size)   # legend fontsize
+plt.rc('figure', titlesize=font_size)  # # size of the figure title
+
 imsize = np.array([319, 217])
 center = [108.5, 108.5]
 max_radius = 108
@@ -49,8 +60,8 @@ for angle in angles:
 # plot wedges within the graph
 wedges = [
           (max_radius/2, 30,150, '#00ff08'),
-          (max_radius/1.5, 150, 270, '#ff6100'),
-          (max_radius/3, 270, 390, '#000cff'),
+          (max_radius/3, 150, 270, '#ff6100'),
+          (max_radius/1.5, 270, 390, '#000cff'),
           #(96, 45, 58, '#FD7C1A'),
           #(73, 291, 308, '#CCFF28'),
           #(47, 146, 155, '#28FFCC'),
@@ -63,13 +74,39 @@ for (radius, theta1, theta2, color) in wedges:
 
 for patch in ax.patches:
     patch.set_clip_path(clip_path)
-ax.text(108.5+max_radius * np.cos(np.pi/4),
-        108.5+max_radius * np.sin(-np.pi/4), u'Readines')
-ax.text(108.5+max_radius * np.cos(np.pi + np.pi/4),
-        108.5+max_radius*np.sin(np.pi + np.pi/4), u'Diffuculty')
+
+ax.text(110+max_radius * np.cos(np.pi/4),
+        108.5+max_radius * np.sin(-np.pi/4), u'TRL')
+ax.text(80+max_radius * np.cos(np.pi + np.pi/4),
+        108.5+max_radius*np.sin(np.pi + np.pi/4), u'R&D3')
 ax.text(108.5+max_radius * np.cos(6*np.pi/4),
-        108.5+max_radius*np.sin(-6*np.pi/4), u'Need')
+        120+max_radius*np.sin(-6*np.pi/4), u'TNV')
+
+ax.text(108.5 + 0.7*max_radius * np.cos(np.pi/4),
+        108.5 + 0.7*max_radius * np.sin(-np.pi/4), u'5')
+ax.text(108.5 + 0.4*max_radius * np.cos(np.pi + np.pi/4),
+        108.5 + 0.4*max_radius * np.sin(np.pi + np.pi/4), u'4')
+ax.text(108.5 + 0.6*max_radius * np.cos(6*np.pi/4),
+        108.5 + 0.6*max_radius * np.sin(-6*np.pi/4), u'3')
+
+ax.text(108.5 + 0.12*max_radius * np.cos(np.pi/4),
+        108.5 + 0.12*max_radius * np.sin(-np.pi/4), u'1')
+ax.text(108.5 + 0.12*max_radius * np.cos(np.pi + np.pi/4),
+        108.5 + 0.12*max_radius * np.sin(np.pi + np.pi/4), u'5')
+ax.text(108.5 + 0.12*max_radius * np.cos(6*np.pi/4),
+        108.5 + 0.12*max_radius * np.sin(-6*np.pi/4), u'5')
+
+ax.text(108.5 + 0.92*max_radius * np.cos(np.pi/4),
+        108.5 + 0.92*max_radius * np.sin(-np.pi/4), u'9')
+ax.text(108.5 + 0.95*max_radius * np.cos(np.pi + np.pi/4),
+        108.5 + 0.95*max_radius * np.sin(np.pi + np.pi/4), u'1')
+ax.text(108.5 + 0.95*max_radius * np.cos(6*np.pi/4),
+        108.5 + 0.95*max_radius * np.sin(-6*np.pi/4), u'1')
+
+ax.text(250, 108.5, u'Critical',color='r')
+ax.text(108.5-45, -10, u'Risk Diagram',size=20)
 ax.set_xlim(0, imsize[0])
 ax.set_ylim(imsize[1], 0)
 
+plt.savefig('/home/kristoffer/Desktop/Github/plots/innovation_plot.pdf')
 plt.show()
