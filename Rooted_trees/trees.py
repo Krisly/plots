@@ -31,23 +31,27 @@ Radau5.plot_stability_region(N=200,bounds=[-20,30,-20,20],longtitle=False)
 plt.savefig('./abs_stab_reg_Radau5.pdf')
 plt.show()
 
-
+ll = [1,1,2,4]
+for k in range(4):
+	order = k+1
+	des_tree = rt.list_trees(order)
+	j = 1
+	prev_dev = 0
+	for i in range(ll[k]):
+		print(i)
+		des_tree[i].plot()
+		if des_tree[i].density() == prev_dev:
+				plt.savefig('./tree_order_5_density_{}_{}.pdf'.format(j,des_tree[i].density()))
+				j += 1
+		else:
+				plt.savefig('./tree_order_5_density_{}.pdf'.format(des_tree[i].density()))
+		plt.close()
+		prev_dev = des_tree[i].density()
+	
+	#plot_all_trees(order)
+	#plt.savefig('./rooted_trees_all_order{}.pdf'.format(order))
+	#plt.close()
 '''
-des_tree = rt.list_trees(5)
-
-j = 1
-for i in range(0,9):
-	des_tree[i].plot()
-	if des_tree[i].density() == 20:
-			plt.savefig('./tree_order_5_density_{}_{}.pdf'.format(j,des_tree[i].density()))
-			j += 1
-	else:
-			plt.savefig('./tree_order_5_density_{}.pdf'.format(des_tree[i].density()))
-	plt.close()
-
-plot_all_trees(5)
-plt.savefig('./all.pdf')
-
 plot_all_trees(5,title='')
 plt.savefig('./figs/rooted_trees.pdf')
 plt.show()
