@@ -27,10 +27,11 @@ A=np.array([[(88-7*np.sqrt(6))/(360),(296-169*np.sqrt(6))/(1800),(-2+3*np.sqrt(6
 b=np.array([(16-np.sqrt(6))/36,(16+np.sqrt(6))/(36),1/9])
 
 Radau5 = rk.RungeKuttaMethod(A,b)
-Radau5.plot_stability_region(N=200,bounds=[-20,30,-20,20],longtitle=False)
-plt.savefig('./abs_stab_reg_Radau5.pdf')
+Radau5.plot_stability_region(N=200,bounds=[-5,25,-10,10],longtitle=False)
+#plt.savefig('./abs_stab_reg_Radau5.pdf')
 plt.show()
 
+'''
 ll = [1,1,2,4]
 for k in range(4):
 	order = k+1
@@ -51,6 +52,7 @@ for k in range(4):
 	#plot_all_trees(order)
 	#plt.savefig('./rooted_trees_all_order{}.pdf'.format(order))
 	#plt.close()
+'''
 '''
 plot_all_trees(5,title='')
 plt.savefig('./figs/rooted_trees.pdf')
